@@ -1,0 +1,18 @@
+g.active > path.bright { animation: to-paint-bright 1s infinite; }
+g.active > path.main { animation: to-paint-main 1s infinite; }
+g.active > path.dark { animation: to-paint-dark 1s infinite; }
+
+@keyframes to-paint-bright {
+  0%, 100% { fill: white; }
+  50% { fill: lightgray; }
+}
+
+@keyframes to-paint-main {
+  0%, 100% { fill: lightgray; }
+  50% { fill: darkgray; }
+}
+
+@keyframes to-paint-dark {
+  0%, 100% { fill: darkgray; }
+  50% { fill: #666; }
+}

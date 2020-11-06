@@ -1,0 +1,27 @@
+{
+  "name": "pk-color",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sergy232/pk-color.git"
+  },
+  "author": "Sergio Pascual",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sergy232/pk-color/issues"
+  },
+  "homepage": "https://github.com/Sergy232/pk-color#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "eslint": "^7.12.1",
+    "eslint-config-google": "^0.14.0",
+    "http-server": "^0.12.3",
+    "sass": "^1.27.0",
+    "typescript": "^4.0.3"
+  }
+}
