@@ -1,0 +1,76 @@
+/* TODO parse this to Sass in BEM style */
+
+.color-picker__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: unset;
+}
+
+.color-picker__saturation {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  outline: solid 1px gray;
+  background: linear-gradient(to right, #fff, hsl(0, 100%, 50%));
+}
+
+.color-picker__saturation-box {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+
+  background: linear-gradient(hsla(0,0%,100%,0),#000);
+}
+
+.color-picker__saturation-handle {
+  height: 20px;
+  width: 20px;
+  border: 2px hsl(0, 0%, 94%) solid;
+  border-radius: 22px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  background-color: hsl(0, 100%, 100%);
+
+  left: -10px;
+  top: -10px;
+}
+
+.color-picker__hue {
+  position: relative;
+  margin-top: 30px;
+  height: 40px;
+  width: 300px;
+}
+
+.color-picker__hue-slider {
+  position: absolute;
+  border-radius: 5px;
+  top: 20px;
+  height: 10px;
+  width: 100%;
+  background: linear-gradient(to right,hsl(0,100%,50%),hsl(60,100%,50%),hsl(120,100%,50%),hsl(180,100%,50%),hsl(240,100%,50%),hsl(300,100%,50%),hsl(360,100%,50%));
+}
+
+.color-picker__hue-handle {
+  top: 13px;
+  left: -10px;
+  height: 20px;
+  width: 20px;
+  border: 2px hsl(0, 0%, 94%) solid;
+  border-radius: 22px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  background-color: hsl(0,100%,50%);
+}
+
+.no-touch-events {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+}

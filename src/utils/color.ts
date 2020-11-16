@@ -1,15 +1,29 @@
-import { randomBetween } from './math';
+import { MathUtils } from './math';
 import { memoize } from './memoizer';
 
-export const rgbLinearShade = memoize(_rgbLinearShade);
+/** TODO */
+export class HSV {
+  /** TODO */
+  constructor(
+    public h: number,
+    public s: number,
+    public v: number,
+  ) {}
+}
 
 /** TODO */
-export function randomRGBColor(): string {
-  const red = randomBetween(0, 255);
-  const green = randomBetween(0, 255);
-  const blue = randomBetween(0, 255);
+export class ColorUtils {
+  public static rgbLinearShade = memoize(_rgbLinearShade);
+  public static hslFromHsv = memoize(_hslFromHsv);
 
-  return `rgb(${red},${green},${blue})`;
+  /** TODO */
+  public static randomRGBColor(): string {
+    const red = MathUtils.randomBetween(0, 255);
+    const green = MathUtils.randomBetween(0, 255);
+    const blue = MathUtils.randomBetween(0, 255);
+
+    return `rgb(${red},${green},${blue})`;
+  }
 }
 
 /** Calculates a darker or brighter rgb(a) color given the inputs.
@@ -31,4 +45,12 @@ function _rgbLinearShade(color: string, percentage: number): string {
     Math.round(+blue * multiplier + rest);
 
   return alpha ? `rgba(${resultColor},${alpha})` : `rgb(${resultColor})`;
+}
+
+/** Given a color in HSV format, returns a valid hsl() color definition. */
+function _hslFromHsv({ h, s, v }: HSV): string {
+  const l = (2 - s / 100) * v / 2; // lightness (0-100)
+  const _s = s * v / (l < 50 ? l * 2 : 200 - l * 2); // saturation (0-100)
+
+  return `hsl(${h},${isNaN(_s) ? 0 : _s}%,${l}%)`;
 }
