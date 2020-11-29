@@ -1,3 +1,5 @@
+@import './utilities/colors.scss';
+
 g.active > path.bright { animation: to-paint-bright 1s infinite; }
 g.active > path.main { animation: to-paint-main 1s infinite; }
 g.active > path.dark { animation: to-paint-dark 1s infinite; }
@@ -15,4 +17,31 @@ g.active > path.dark { animation: to-paint-dark 1s infinite; }
 @keyframes to-paint-dark {
   0%, 100% { fill: darkgray; }
   50% { fill: #666; }
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: unset;
+}
+
+.pc-nav {
+  overflow: hidden;
+  background-color: $pk-color;
+  padding: 10px 0;
+}
+
+.pc-nav > ul {
+  margin: unset;
+  padding: unset;
+  list-style-type: none;
+}
+
+.pc-nav > ul > li {
+  padding: 0 10px;
+  float: left;
+  transition: color 0.3s;
+}
+
+.pc-nav > ul > li:hover {
+  color: white;
 }

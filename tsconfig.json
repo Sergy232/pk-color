@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "es6",
     "lib": [
-        "es6", "DOM"
+      "es6",
+      "DOM"
     ],
     "declaration": true,
     "removeComments": true,
@@ -12,7 +13,8 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*.ts"
@@ -20,5 +22,6 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ]
+  ],
+  "compileOnSave": true
 }

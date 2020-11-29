@@ -40,9 +40,9 @@ function _rgbLinearShade(color: string, percentage: number): string {
   const rest = darken ? 0 : 255 * percentage;
 
   const resultColor =
-    Math.round(+rawRed * multiplier + rest) + ',' +
-    Math.round(+green * multiplier + rest) + ',' +
-    Math.round(+blue * multiplier + rest);
+    Math.round(parseInt(rawRed) * multiplier + rest) + ',' +
+    Math.round(parseInt(green) * multiplier + rest) + ',' +
+    Math.round(parseInt(blue) * multiplier + rest);
 
   return alpha ? `rgba(${resultColor},${alpha})` : `rgb(${resultColor})`;
 }
