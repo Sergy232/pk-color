@@ -1,75 +1,39 @@
 import './styles/styles.scss'; // Necessary for Webpack processing of Sass
+import { POKEMONS } from './pages/home/components/poke-card/pokemons';
 
-import * as DOM from './lib/dom';
-import { ColorUtils as Color } from './utils/color';
 
-/** Runs just after the <body> was initialized */
-const groups = DOM.byTag<SVGGElement>('g');
+(function() {
+  const container = document.getElementById('pokedex');
 
-for (let i = 0; i < groups.length; i++) {
-  const group = groups[i];
-
-  const className = group.className.baseVal;
-
-  if (className) {
-    // Note SP 31.10.2020 This should go in the edit page in the future.
-    group.onmouseenter = () => setActiveState(className, true);
-    group.onmouseleave = () => setActiveState(className, false);
-    group.onclick = () => changeColor(className);
-  }
-}
-
-/** Highlight other <g> tags with the same class (color pattern) */
-function setActiveState(className: string, activate: boolean) {
-  const siblings = DOM.byClass<SVGGElement>(className);
-
-  for (let i = 0; i < siblings.length; i++) {
-    const sibling = siblings[i];
-
-    activate ?
-      sibling.classList.add('active') :
-      sibling.classList.remove('active');
-  }
-}
-
-/** TODO jsdoc */
-function changeColor(className: string) {
-  const newColor = Color.randomRGBColor();
-
-  const groups = DOM.byClass<SVGGElement>(className);
-
-  for (let i = 0; i < groups.length; i++) {
-    const group = groups[i];
-
-    for (let i = 0; i < group.children.length; i++) {
-      const path = group.children[i] as SVGPathElement;
-
-      paintPath(path, newColor);
-    }
-  }
-}
-
-/** TODO jsdoc */
-function paintPath(path: SVGPathElement, rgbColor: string) {
-  const percentage = 0.3;
-  const className = path?.className?.baseVal;
-
-  // TODO enums
-  if (className === 'main') {
-    path.style.fill = rgbColor;
-
-    return;
+  if (!container) {
+    // TODO show alert
+    throw new Error('Stop meddling with the DevTools :)');
   }
 
-  if (className === 'bright') {
-    path.style.fill = Color.rgbLinearShade(rgbColor, percentage);
+  /** TODO this should go into a separate class (PokeCard) */
+  const pokeCard = document.createElement('div');
+  const indexNode = document.createElement('strong');
+  const nameNode = document.createElement('i');
 
-    return;
+  pokeCard.classList.add('pc-card');
+  indexNode.classList.add('pc-card__index');
+  nameNode.classList.add('pc-card__name');
+
+  for (const p of POKEMONS) {
+    const card = pokeCard.cloneNode();
+
+    const image = new Image();
+    image.src = `https://veekun.com/dex/media/pokemon/dream-world/${p.img}.svg`;
+    card.appendChild(image);
+
+    const indexInstance = indexNode.cloneNode();
+    indexInstance.textContent = `#${p.pIndex}`;
+    card.appendChild(indexInstance);
+
+    const nameInstance = nameNode.cloneNode();
+    nameInstance.textContent = p.name;
+    card.appendChild(nameInstance);
+
+    container.appendChild(card);
   }
-
-  if (className === 'dark') {
-    path.style.fill = Color.rgbLinearShade(rgbColor, -percentage);
-
-    return;
-  }
-}
+}());
