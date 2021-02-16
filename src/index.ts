@@ -42,6 +42,11 @@ import { POKEMONS } from './pages/home/components/poke-card/pokemons';
     image.classList.add('loading-gradient');
     image.onload = () => image.classList.remove('loading-gradient');
     image.src = `https://veekun.com/dex/media/pokemon/dream-world/${url}.svg`;
+    /**
+     * TOOD where lazy loading is not supported,
+     * add Intersection Observer logic instead
+     */
+    image.loading = 'lazy';
 
     return image;
   }
